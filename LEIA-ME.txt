@@ -1,0 +1,206 @@
+========================================================================
+  MINHA AGENDA  -  aplicativo local de compromissos e prazos
+========================================================================
+
+
+COMO ABRIR
+------------------------------------------------------------------------
+
+  De duplo clique no arquivo "index.html".
+
+  Pronto. Nao precisa instalar nada, nao precisa internet,
+  nao precisa de programa nenhum.
+
+  O arquivo index.html e o aplicativo inteiro. Pode deixar ele em
+  qualquer pasta, por exemplo na Area de Trabalho.
+
+  Para instalar no celular como aplicativo, veja a secao
+  "INSTALAR NO ANDROID (PWA)" abaixo.
+
+
+INSTALAR NO ANDROID (PWA)
+------------------------------------------------------------------------
+
+  O aplicativo agora e um PWA. Para instalar no Xiaomi POCO X5 Pro,
+  ele precisa estar aberto por um endereco HTTPS (ou localhost no
+  computador). O Chrome do Android nao instala um PWA aberto direto
+  pelo arquivo index.html.
+
+  1. Publique a pasta "minha-agenda" em um servico gratuito de sites
+     estaticos, por exemplo: GitHub Pages, Netlify Drop, Cloudflare
+     Pages ou Vercel. Nao existe servidor nem banco de dados: sao
+     apenas os arquivos HTML, CSS, JS, manifest e icones.
+
+  2. Abra o endereco publicado no Chrome do celular.
+
+  3. Toque no botao "Instalar" que aparece no topo ou no menu de tres
+     pontos do Chrome > "Instalar aplicativo" (ou "Adicionar a tela
+     inicial").
+
+  4. Confirme. O icone "Agenda" sera adicionado a tela inicial e o app
+     abrira em tela cheia (modo standalone), sem a barra do navegador.
+
+  No computador, para testar antes de publicar:
+     python3 -m http.server 8080
+  e abra http://localhost:8080 no Chrome. O localhost tambem permite
+  instalar e testar o PWA.
+
+  IMPORTANTE - DADOS ANTIGOS
+  --------------------------
+  Se voce ja usava o index.html aberto direto no computador, os dados
+  antigos ficam ligados ao endereco antigo (file://). Eles nao passam
+  automaticamente para o endereco HTTPS.
+
+  Antes de mudar:
+    1. Abra a versao antiga.
+    2. Clique em "Exportar" e guarde o arquivo .json.
+    3. Instale/abra a nova versao no mesmo endereco HTTPS.
+    4. Clique em "Importar" e escolha o .json exportado.
+
+  Depois de importar, os dados ficam salvos no celular e continuam
+  la nas proximas aberturas e atualizacoes do aplicativo.
+
+
+FUNCIONAMENTO OFFLINE
+------------------------------------------------------------------------
+
+  Depois do primeiro carregamento com internet, o app abre sem conexao.
+  Cadastrar, editar, excluir, concluir, calendario, busca e filtros
+  continuam funcionando. Exportar e importar tambem funcionam offline.
+
+  A primeira instalacao e as atualizacoes precisam de internet.
+
+
+O QUE VOCE PODE COLOCAR
+------------------------------------------------------------------------
+
+  - Titulo      (obrigatorio)  ->  "Prova de matematica"
+  - Descricao                  ->  "Capitulos 4 e 5, sala 302"
+  - Data e hora  (obrigatorio) ->  quando acontece
+  - Local                      ->  "Escola", "Online", "Clinica"
+  - Categoria                  ->  Estudo, Trabalho, Pessoal, Saude,
+                                   Financeiro, Lazer, Familia, Outro
+
+  Voce pode escrever a categoria que quiser. As que ja aparecem como
+  botao sao so sugestoes.
+
+
+O QUE O APP FAZ
+------------------------------------------------------------------------
+
+  Duas formas de ver a mesma agenda:
+
+    ABA "AGENDA"     - lista agrupada por dia, com os atrasados no topo
+    ABA "CALENDARIO" - o mes inteiro, com bolinhas coloridas por dia
+
+  No topo sempre aparece o card do proximo compromisso, com a
+  contagem regressiva.
+
+  Cada item mostra quanto falta, e a cor muda conforme se aproxima:
+
+        mais de 7 dias ......... VERDE      "faltam 12 dias"
+        de 4 a 7 dias .......... AMARELO    "faltam 5 dias"
+        de 2 a 3 dias .......... LARANJA    "faltam 2 dias"
+        ate 48 horas ........... VERMELHO   "faltam 6h"
+        ja passou .............. VERMELHO   "atrasado ha 3h"
+
+  Itens atrasados ganham um bloco "Atrasados" bem no comeco da lista,
+  e o card do topo passa a mostrar "Precisa de atencao".
+
+  A contagem se atualiza sozinha a cada minuto.
+
+
+ATALHOS
+------------------------------------------------------------------------
+
+  n ........... abre a janela de novo compromisso
+  Esc ......... fecha a janela
+  clique no item ......... abre para editar
+  no calendario, clique num dia ......... ja abre um compromisso
+                                        novo nesse dia as 09:00
+
+
+BACKUP E TRANSFERENCIA
+------------------------------------------------------------------------
+
+  Exportar ....... salva um arquivo .json com tudo o que voce tem
+  Importar ....... le o .json de volta
+
+  Use o Exportar de vez em quando para ter um backup. Se um dia voce
+  formatar o computador ou trocar de maquina, e so importar o arquivo.
+
+  Dica: salve o .json no seu e-mail ou nuvem, ai voce tem copia
+  em qualquer lugar.
+
+
+ONDE OS DADOS FICAM
+------------------------------------------------------------------------
+
+  Tudo e salvo apenas no seu navegador, neste dispositivo, no
+  "armazenamento local" (localStorage). Nao vai para a internet,
+  nao tem servidor, nao tem conta, ninguem mais ve.
+
+  O service worker guarda em cache somente os arquivos do aplicativo
+  para funcionar offline. Ele NAO apaga nem substitui os compromissos.
+
+  IMPORTANTE
+  ----------
+  Os dados pertencem ao endereco do site. Se voce abrir o app por
+  outro endereco, os dados nao aparecem. Por isso, depois de publicar,
+  use sempre o mesmo endereco.
+
+  Se voce limpar os dados de navegacao do Chrome, ou usar o botao
+  "limpar cookies e dados de sites", a agenda e apagada. Por isso
+  faca backup de vez em quando com o botao Exportar.
+
+  Tambem nao use a janela anonima/privada: ela apaga tudo ao fechar.
+
+  Se voce trocar de navegador (Firefox -> Chrome), os dados NAO vao junto.
+  Use Exportar e depois Importar.
+
+  Ao atualizar o aplicativo (substituir os arquivos no mesmo endereco),
+  os compromissos continuam salvos. O que muda e apenas o cache dos
+  arquivos do app.
+
+
+ATUALIZAR O APLICATIVO
+------------------------------------------------------------------------
+
+  Substitua os arquivos publicados pelos arquivos novos, mantendo o
+  mesmo endereco. Na proxima abertura com internet, o service worker
+  baixa a nova versao.
+
+  Se aparecer o aviso "Nova versao disponivel", feche e abra o app
+  para carregar a atualizacao. Se quiser forcar, feche todas as abas
+  do app e abra novamente.
+
+  Os compromissos no localStorage nao sao apagados durante a
+  atualizacao. Ainda assim, exporte um backup antes de mudancas grandes.
+
+  Se voce mudar o nome do cache dentro do sw.js, os caches antigos
+  sao limpos aos poucos (o anterior e mantido por seguranca), mas o
+  localStorage continua intacto.
+
+
+O QUE PRECISA
+------------------------------------------------------------------------
+
+  Qualquer navegador moderno: Chrome, Edge, Firefox ou Safari.
+  Em qualquer sistema: Windows, Linux, Mac ou Android.
+
+  Para instalar como aplicativo no Android, use o Chrome (ou Edge)
+  e abra o projeto por um endereco HTTPS, como explicado acima.
+
+  No computador, F11 no Windows/Linux ou Cmd+Ctrl+F no Mac deixa
+  a tela cheia. No app instalado, a tela cheia ja e automatica.
+
+
+SEGURANCA
+------------------------------------------------------------------------
+
+  Nenhum campo da agenda e executado como codigo. Digitar
+  <b> ou <script> no titulo aparece literalmente na tela.
+  Nada do que voce escreve sai do seu computador.
+
+
+========================================================================
